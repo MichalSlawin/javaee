@@ -1,4 +1,4 @@
-package com.javee.doorstore.domain;
+package com.javaee.doorstore.domain;
 
 import java.util.Date;
 
@@ -12,6 +12,7 @@ public class Door {
 	private String description;
 	
 	public Door(long id, Date productionDate, double weight, boolean isExterior, String producent, String description) {
+		this.id = id;
 		this.productionDate = productionDate;
 		this.weight = weight;
 		this.isExterior = isExterior;
