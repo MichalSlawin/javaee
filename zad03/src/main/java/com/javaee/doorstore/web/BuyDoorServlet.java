@@ -7,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(urlPatterns = "buyDoor")
@@ -35,12 +37,43 @@ public class BuyDoorServlet extends HttpServlet {
                     "<p>Weight: " + door.getWeight() + "</p>" +
                     "<p>Is exterior: " + door.isExterior() + "</p>" +
                     "<p>Producer: " + door.getProducer() + "</p>" +
-                    "<p>Description: " + door.getDescription() + "</p><br />");
+                    "<p>Description: " + door.getDescription() + "</p>" +
+                    "<p>Price: " + door.getPrice() + "</p>" +
+                    "<form method='POST' action=''>" +
+                    "<input name='id' hidden value='" + door.getId() + "' />" +
+                    "<input type='submit' value=' Add to cart ' />" +
+                    "</form>");
         }
 
-        out.println("    </body>\n" +
+        out.println(
+                "</body>\n" +
                 "</html>");
 
         out.close();
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html");
+        HttpSession httpSession = request.getSession();
+
+        List<Door> sessionCart;
+
+        if(httpSession.getAttribute("sessionCart") == null) {
+            sessionCart = new ArrayList<Door>();
+        } else {
+            sessionCart = (ArrayList<Door>) httpSession.getAttribute("sessionCart");
+        }
+        long id = Long.parseLong(request.getParameter("id"));
+        Door door = StorageService.getDoor(id);
+        sessionCart.add(door);
+        httpSession.setAttribute("sessionCart", sessionCart);
+
+        PrintWriter out = response.getWriter();
+
+        out.println("<h2>Product added to cart</h2>" +
+                "<a href='./cart'><p>Go to cart</p></a>" +
+                "<a href='./buyDoor'><p>Continue shopping</p>");
+    }
+
 }

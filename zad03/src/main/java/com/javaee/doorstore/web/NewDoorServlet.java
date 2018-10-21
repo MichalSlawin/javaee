@@ -28,13 +28,14 @@ public class NewDoorServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		out.println("<html><body><h2>New door</h2>" +
-				"<form method=\"POST\" action=''>" +
+				"<form method='POST' action=''>" +
 				"Id: <input type='number' name='id' /> <br />" +
 				"Production date: <input type='date' name='productionDate' /> <br />" +
 				"Weight: <input type='text' name='weight' /> <br />" +
 				"Is exterior: <input type='checkbox' name='isExterior' /> <br />" +
 				"Producer: <input type='text' name='producer' /> <br />" +
 				"Description: <input type='text' name='description' /> <br />" +
+				"Price: <input type='text' name='price' /> <br />" +
 				"<input type='submit' value=' Add ' />" +
 				"</form>" +
 				"</body></html>");
@@ -53,8 +54,9 @@ public class NewDoorServlet extends HttpServlet {
 		boolean isExterior = request.getParameter("isExterior") != null;
 		String producer = request.getParameter("producer");
 		String description = request.getParameter("description");
+		double price = Double.parseDouble(request.getParameter("price"));
 
-		StorageService.add(new Door(id, productionDate, weight, isExterior, producer, description));
+		StorageService.add(new Door(id, productionDate, weight, isExterior, producer, description, price));
 
 		PrintWriter out = response.getWriter();
 		out.println("<html><body><h2>A new door has been added</h2>" +
@@ -63,9 +65,10 @@ public class NewDoorServlet extends HttpServlet {
 				"<p>Weight: " + weight + "</p>" +
 				"<p>Is exterior: " + isExterior + "</p>" +
 				"<p>Producer: " + producer + "</p>" +
-				"<p>Description: " + description + "</p><br />" +
-				"<p><a href=\"newDoorForm\">Add another door</a></p>\n" +
-				"<p><a href=\"menu\">Back to menu</a></p>\n" +
+				"<p>Description: " + description + "</p>" +
+				"<p>Price: " + price + "</p><br />" +
+				"<p><a href=\"./newDoorForm\">Add another door</a></p>\n" +
+				"<p><a href=\"./\">Back to menu</a></p>\n" +
 				"</body></html>");
 		out.close();
 		} catch (ParseException e) {
