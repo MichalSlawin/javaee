@@ -79,4 +79,15 @@ public class Door {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	@Override
+	public String toString() {
+		return "id=" + id +
+				", productionDate=" + productionDate +
+				", weight=" + weight +
+				", isExterior=" + isExterior +
+				", producer='" + producer + '\'' +
+				", description='" + description + '\'' +
+				", price=" + price;
+	}
 }

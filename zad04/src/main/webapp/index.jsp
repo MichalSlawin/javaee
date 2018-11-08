@@ -10,5 +10,6 @@
     <body>
         <h2>Door store</h2>
         <p><a href="getDoorData.jsp">Add a new door</a></p>
+        <p><a href="showAllDoors.jsp">Buy a door</a></p>
     </body>
 </html>

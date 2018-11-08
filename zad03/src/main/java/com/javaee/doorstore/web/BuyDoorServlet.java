@@ -29,7 +29,7 @@ public class BuyDoorServlet extends HttpServlet {
                 "    <body>\n" +
                 "        <h2>Available doors</h2>\n");
 
-        List<Door> doorsList = StorageService.getAllDoors();
+        List<Door> doorsList = (ArrayList<Door>)getServletContext().getAttribute("application_doors");
 
         for(Door door : doorsList) {
             out.println("<p>Id: " + door.getId() + "</p>" +
@@ -56,6 +56,7 @@ public class BuyDoorServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         HttpSession httpSession = request.getSession();
+        List<Door> doorsList = (ArrayList<Door>)getServletContext().getAttribute("application_doors");
 
         List<Door> sessionCart;
 
@@ -65,8 +66,15 @@ public class BuyDoorServlet extends HttpServlet {
             sessionCart = (ArrayList<Door>) httpSession.getAttribute("sessionCart");
         }
         long id = Long.parseLong(request.getParameter("id"));
-        Door door = StorageService.getDoor(id);
-        sessionCart.add(door);
+        Door searchedDoor = null;
+
+        for(Door door : doorsList) {
+            if(door.getId() == id) {
+                searchedDoor = door;
+            }
+        }
+
+        sessionCart.add(searchedDoor);
         httpSession.setAttribute("sessionCart", sessionCart);
 
         PrintWriter out = response.getWriter();

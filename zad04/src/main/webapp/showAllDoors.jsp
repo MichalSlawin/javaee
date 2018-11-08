@@ -1,4 +1,4 @@
-<%@page import="com.example.servletjspdemo.domain.Person"%>
+<%@ page import="com.javaee.doorstore.domain.Door" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,15 +9,22 @@
 </head>
 <body>
 
-<jsp:useBean id="storage" class="com.example.servletjspdemo.service.StorageService" scope="application" />
+<jsp:useBean id="storage" class="com.javaee.doorstore.service.StorageService" scope="application" />
 <%
-  for (Person person : storage.getAllPersons()) {
-	  out.println("<p>First name: " + person.getFirstName() + "; Year of birth: " + person.getYob() + "</p>");
+  for (Door door : storage.getAllDoors()) {
+	  out.println("<p>Id: " + door.getId() + "; Production date: " + door.getProductionDate() + "</p>");
+	  out.println("<p>Weight: " + door.getWeight() + "; Exterior: " + door.isExterior() + "</p>");
+      out.println("<p>Producer: " + door.getProducer() + "; Price: " + door.getPrice() + "</p>");
+      out.println("<p>Description: " + door.getDescription() + "</p>");
+      out.println();
+      out.println("<form action='cart.jsp'>" +
+              "<input name='id' hidden value='" + door.getId() + "' />" +
+              "<input type='submit' value=' Add to cart ' />" +
+              "</form>");
   }
 %>
-<p>
-  <a href="getDoorData.jsp">Add another person</a>
-</p>
+<p><a href="index.jsp">Menu</a></p>
+
 
 </body>
 </html>

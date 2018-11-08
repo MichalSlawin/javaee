@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,7 +58,11 @@ public class NewDoorServlet extends HttpServlet {
 		String description = request.getParameter("description");
 		double price = Double.parseDouble(request.getParameter("price"));
 
-		StorageService.add(new Door(id, productionDate, weight, isExterior, producer, description, price));
+		List<Door> doorsList = (ArrayList<Door>)getServletContext().getAttribute("application_doors");
+
+		doorsList.add(new Door(id, productionDate, weight, isExterior, producer, description, price));
+
+		//StorageService.add(new Door(id, productionDate, weight, isExterior, producer, description, price));
 
 		PrintWriter out = response.getWriter();
 		out.println("<html><body><h2>A new door has been added</h2>" +
