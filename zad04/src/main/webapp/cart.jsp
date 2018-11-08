@@ -20,20 +20,24 @@
 %>
 
 
-<jsp:useBean id="storage" class="com.javaee.doorstore.service.StorageService" scope="application" />
+<jsp:useBean id="storage" class="com.javaee.doorstore.service.StorageService" scope="session" />
+
+<p>Doors in cart:</p>
 
 <%
-    storage.add(door);
+    storage.add(door, storage.getShoppingCart());
+
+    for (Door cartDoor : storage.getShoppingCart()) {
+        out.println("<p>Id: " + cartDoor.getId() + "; Production date: " + cartDoor.getProductionDate() + "</p>");
+        out.println("<p>Weight: " + cartDoor.getWeight() + "; Exterior: " + cartDoor.isExterior() + "</p>");
+        out.println("<p>Producer: " + cartDoor.getProducer() + "; Price: " + cartDoor.getPrice() + "</p>");
+        out.println("<p>Description: " + cartDoor.getDescription() + "</p>");
+        out.println();
+    }
+
 %>
 
-<p>Following door has been added to storage: </p>
-<p>Id ${door.id} </p>
-<p>Production date: ${door.productionDate}</p>
-<p>Weight: ${door.weight}</p>
-<p>Is exterior: ${door.exterior}</p>
-<p>Producer: ${door.producer}</p>
-<p>Description: ${door.description}</p>
-<p>Price: ${door.price}</p>
+
 <p><a href="showAllDoors.jsp">Show all doors</a></p>
 <p><a href="index.jsp">Menu</a></p>
 

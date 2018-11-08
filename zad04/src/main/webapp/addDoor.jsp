@@ -36,7 +36,7 @@
 <jsp:useBean id="storage" class="com.javaee.doorstore.service.StorageService" scope="application" />
 
 <%
-  storage.add(door);
+  storage.add(door, storage.getDoorsList());
 %>
 
 <p>Following door has been added to storage: </p>

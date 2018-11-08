@@ -29,7 +29,7 @@ public class BuyDoorServlet extends HttpServlet {
                 "    <body>\n" +
                 "        <h2>Available doors</h2>\n");
 
-        List<Door> doorsList = StorageService.getAllDoors();
+        List<Door> doorsList = StorageService.getDoorsList();
 
         for(Door door : doorsList) {
             out.println("<p>Id: " + door.getId() + "</p>" +
