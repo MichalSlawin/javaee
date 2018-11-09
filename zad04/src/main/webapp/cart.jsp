@@ -12,29 +12,34 @@
     <title>Cart</title>
 </head>
 <body>
+<jsp:useBean id="storage" class="com.javaee.doorstore.service.StorageService" scope="application" />
 <jsp:useBean id="door" class="com.javaee.doorstore.domain.Door" scope="session" />
+<jsp:useBean id="cart" class="com.javaee.doorstore.service.StorageService" scope="session" />
+<jsp:useBean id="rodo" class="com.javaee.doorstore.service.Rodo" scope="session" />
 
 <%
+    if(!rodo.isPersonalDataConsent() || !rodo.isCookiesConsent()) {
+        response.sendRedirect("getRodo.jsp");
+    }
+
     long id = Long.parseLong(request.getParameter("id"));
-    door = StorageService.getDoor(id);
+    door = storage.getDoor(id);
+    cart.add(door);
 %>
-
-
-<jsp:useBean id="storage" class="com.javaee.doorstore.service.StorageService" scope="session" />
 
 <p>Doors in cart:</p>
 
 <%
-    storage.add(door, storage.getShoppingCart());
-
-    for (Door cartDoor : storage.getShoppingCart()) {
+    double priceSum = 0.0;
+    for (Door cartDoor : cart.getAllDoors()) {
         out.println("<p>Id: " + cartDoor.getId() + "; Production date: " + cartDoor.getProductionDate() + "</p>");
         out.println("<p>Weight: " + cartDoor.getWeight() + "; Exterior: " + cartDoor.isExterior() + "</p>");
         out.println("<p>Producer: " + cartDoor.getProducer() + "; Price: " + cartDoor.getPrice() + "</p>");
         out.println("<p>Description: " + cartDoor.getDescription() + "</p>");
-        out.println();
+        out.println("<br />");
+        priceSum += cartDoor.getPrice();
     }
-
+    out.println("<br />Total price: " + priceSum);
 %>
 
 

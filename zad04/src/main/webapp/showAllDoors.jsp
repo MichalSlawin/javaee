@@ -11,7 +11,7 @@
 
 <jsp:useBean id="storage" class="com.javaee.doorstore.service.StorageService" scope="application" />
 <%
-  for (Door door : storage.getDoorsList()) {
+  for (Door door : storage.getAllDoors()) {
 	  out.println("<p>Id: " + door.getId() + "; Production date: " + door.getProductionDate() + "</p>");
 	  out.println("<p>Weight: " + door.getWeight() + "; Exterior: " + door.isExterior() + "</p>");
       out.println("<p>Producer: " + door.getProducer() + "; Price: " + door.getPrice() + "</p>");
