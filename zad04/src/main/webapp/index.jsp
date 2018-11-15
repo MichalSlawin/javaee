@@ -2,7 +2,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
-<jsp:useBean id="rodo" class="com.javaee.doorstore.service.Rodo" scope="session" />
+<jsp:useBean id="rodo" class="com.javaee.doorstore.domain.Rodo" scope="session" />
 
 <%
     if(!rodo.isPersonalDataConsent() || !rodo.isCookiesConsent()) {

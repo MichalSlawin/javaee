@@ -11,7 +11,7 @@
     <title>tmp</title>
 </head>
 <body>
-<jsp:useBean id="rodo" class="com.javaee.doorstore.service.Rodo" scope="session" />
+<jsp:useBean id="rodo" class="com.javaee.doorstore.domain.Rodo" scope="session" />
 
 <%
     rodo.setPersonalDataConsent(request.getParameter("personalDataConsent") != null);

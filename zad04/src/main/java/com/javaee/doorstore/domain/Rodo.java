@@ -1,4 +1,4 @@
-package com.javaee.doorstore.service;
+package com.javaee.doorstore.domain;
 
 public class Rodo {
     private boolean personalDataConsent = false;

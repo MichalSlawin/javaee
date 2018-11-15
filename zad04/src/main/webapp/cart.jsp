@@ -1,8 +1,4 @@
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.text.ParseException" %>
 <%@ page import="com.javaee.doorstore.domain.Door" %>
-<%@ page import="com.javaee.doorstore.service.StorageService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -15,16 +11,20 @@
 <jsp:useBean id="storage" class="com.javaee.doorstore.service.StorageService" scope="application" />
 <jsp:useBean id="door" class="com.javaee.doorstore.domain.Door" scope="session" />
 <jsp:useBean id="cart" class="com.javaee.doorstore.service.StorageService" scope="session" />
-<jsp:useBean id="rodo" class="com.javaee.doorstore.service.Rodo" scope="session" />
+<jsp:useBean id="rodo" class="com.javaee.doorstore.domain.Rodo" scope="session" />
 
 <%
     if(!rodo.isPersonalDataConsent() || !rodo.isCookiesConsent()) {
         response.sendRedirect("getRodo.jsp");
     }
 
-    long id = Long.parseLong(request.getParameter("id"));
-    door = storage.getDoor(id);
-    cart.add(door);
+    if(request.getParameter("id") != null) {
+        long id = Long.parseLong(request.getParameter("id"));
+
+        door = storage.getDoor(id);
+        cart.add(door);
+    }
+    
 %>
 
 <p>Doors in cart:</p>

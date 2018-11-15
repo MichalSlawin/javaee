@@ -16,7 +16,7 @@
 	  out.println("<p>Weight: " + door.getWeight() + "; Exterior: " + door.isExterior() + "</p>");
       out.println("<p>Producer: " + door.getProducer() + "; Price: " + door.getPrice() + "</p>");
       out.println("<p>Description: " + door.getDescription() + "</p>");
-      out.println("<form action='cart.jsp'>" +
+      out.println("<form action='cart.jsp' method='post'>" +
               "<input name='id' hidden value='" + door.getId() + "' />" +
               "<input type='submit' value=' Add to cart ' />" +
               "</form>");
