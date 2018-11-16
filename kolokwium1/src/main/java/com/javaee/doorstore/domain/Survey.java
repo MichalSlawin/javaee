@@ -11,6 +11,18 @@ public class Survey {
     private boolean isDoorWrongColour;
     private boolean isDoorBroken;
 
+    public Survey() {
+    }
+
+    public Survey(String dateSince, String dateTo, String howOften, boolean isDoorTooHeavy, boolean isDoorWrongColour, boolean isDoorBroken) {
+        this.dateSince = dateSince;
+        this.dateTo = dateTo;
+        this.howOften = howOften;
+        this.isDoorTooHeavy = isDoorTooHeavy;
+        this.isDoorWrongColour = isDoorWrongColour;
+        this.isDoorBroken = isDoorBroken;
+    }
+
     public boolean isDoorTooHeavy() {
         return isDoorTooHeavy;
     }
@@ -33,9 +45,6 @@ public class Survey {
 
     public void setDoorBroken(boolean doorBroken) {
         isDoorBroken = doorBroken;
-    }
-
-    public Survey() {
     }
 
     public String getDateSince() {
@@ -62,4 +71,16 @@ public class Survey {
         this.howOften = howOften;
     }
 
+    @Override
+    public String toString() {
+        String surveyStr = "";
+        surveyStr += "Used since " + dateSince +
+                ", Used to=" + dateTo +
+                ", Used " + howOften;
+        if(isDoorBroken) surveyStr += ", door is broken";
+        if(isDoorTooHeavy) surveyStr += ", door is too heavy";
+        if(isDoorWrongColour) surveyStr += ", door is wrong colour";
+
+        return surveyStr;
+    }
 }

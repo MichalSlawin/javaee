@@ -18,6 +18,10 @@
 
     Used since: <input type="text"  name="dateSince" value="${survey.dateSince}" /><br />
     Used to: <input type="text" name="dateTo" value="${survey.dateTo}" /><br />
+    <p>How often used:</p>
+    <input type="radio" name="howOften" value="Daily"> Daily<br />
+    <input type="radio" name="howOften" value="Weekly"> Weekly<br />
+    <input type="radio" name="howOften" value="Less often"> Less often<br />
     Is door broken: <input type="checkbox" name="doorBroken" value="${survey.doorBroken}" /><br />
     Is door too heavy: <input type="checkbox" name="doorTooHeavy" value="${survey.doorTooHeavy}" /><br />
     Is door wrong colour: <input type="checkbox" name="doorWrongColour" value="${survey.doorWrongColour}" /><br />

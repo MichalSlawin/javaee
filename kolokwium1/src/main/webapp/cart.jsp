@@ -22,7 +22,7 @@
         long id = Long.parseLong(request.getParameter("id"));
 
         door = storage.getDoor(id);
-        cart.add(door);
+        cart.addDoor(door);
     }
 
 %>
