@@ -18,7 +18,6 @@ import java.util.List;
 @WebServlet(urlPatterns = "/")
 public class MenuServlet extends HttpServlet {
 
-    //adding some data for testing
     public void init() {
         List<Door> doorsList = new ArrayList<Door>();
         getServletContext().setAttribute("application_doors", doorsList);

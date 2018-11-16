@@ -1,0 +1,1 @@
+Kolokwium 1- dodanie ankiety do sklepu z drzwiami
