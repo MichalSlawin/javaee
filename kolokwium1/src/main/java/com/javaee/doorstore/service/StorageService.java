@@ -34,6 +34,10 @@ public class StorageService {
 		return surveysList;
 	}
 
+	public void deleteLastSurvey() {
+		surveysList.remove(surveysList.size()-1);
+	}
+
 	public void clearDoors() {
 		doorsList.clear();
 	}

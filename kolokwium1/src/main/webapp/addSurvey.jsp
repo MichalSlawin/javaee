@@ -34,6 +34,7 @@
 %>
 
 <p>Survey added to storage</p>
+<p><a href="editSurvey.jsp">Edit survey</a></p>
 <p><a href="showAllSurveys.jsp">Show all surveys</a></p>
 <p><a href="index.jsp">Menu</a></p>
 

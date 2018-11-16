@@ -21,5 +21,6 @@
         <p><a href="getDoorData.jsp">Add a new door</a></p>
         <p><a href="showAllDoors.jsp">Buy a door</a></p>
         <p><a href="getSurveyData.jsp">Fill a survey</a></p>
+        <p><a href="showAllSurveys.jsp">Show all surveys</a></p>
     </body>
 </html>
