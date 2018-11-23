@@ -38,6 +38,17 @@ public class StorageService {
 		surveysList.remove(surveysList.size()-1);
 	}
 
+	public Survey getSurveyById(long id) {
+		for(Survey survey : surveysList) {
+			if(survey.getId() == id) return survey;
+		}
+		return null;
+	}
+
+	public void deleteSurveyById(long id) {
+		surveysList.remove(getSurveyById(id));
+	}
+
 	public void clearDoors() {
 		doorsList.clear();
 	}

@@ -1,10 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: michal
-  Date: 16.11.2018
-  Time: 12:20
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.DateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,16 +12,33 @@
 
 <form action="addSurvey.jsp" method="post">
 
-    Used since: <input type="text"  name="dateSince" value="${survey.dateSince}" /><br />
-    Used to: <input type="text" name="dateTo" value="${survey.dateTo}" /><br />
-    <p>How often used:</p>
-    <input type="radio" name="howOften" value="Daily"> Daily<br />
-    <input type="radio" name="howOften" value="Weekly"> Weekly<br />
-    <input type="radio" name="howOften" value="Less often"> Less often<br />
-    Is door broken: <input type="checkbox" name="doorBroken" value="${survey.doorBroken}" /><br />
-    Is door too heavy: <input type="checkbox" name="doorTooHeavy" value="${survey.doorTooHeavy}" /><br />
-    Is door wrong colour: <input type="checkbox" name="doorWrongColour" value="${survey.doorWrongColour}" /><br />
-    <input type="submit" value=" OK ">
+    <%
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateSince = dateFormat.format(new Date());
+        String dateTo = dateFormat.format(new Date());
+
+        if(survey.getDateSince() != null) {
+            dateSince = dateFormat.format(survey.getDateSince());
+            dateTo = dateFormat.format(survey.getDateTo());
+        }
+        String broken, heavy, colour;
+        if(survey.isDoorBroken()) broken = "Is door broken: <input type='checkbox' name='doorBroken' checked /><br />";
+        else broken = "Is door broken: <input type='checkbox' name='doorBroken' /><br />";
+
+        if(survey.isDoorTooHeavy()) heavy = "Is door too heavy: <input type='checkbox' name='doorTooHeavy' checked /><br />";
+        else heavy = "Is door too heavy: <input type='checkbox' name='doorTooHeavy' /><br />";
+
+        if(survey.isDoorWrongColour()) colour = "Is door wrong colour: <input type='checkbox' name='doorWrongColour' checked /><br />";
+        else colour = "Is door wrong colour: <input type='checkbox' name='doorWrongColour' /><br />";
+
+        out.println("Used since: <input type='date'  name='dateSince' value='" + dateSince + "' /><br />\n" +
+                "        Used to: <input type='date' name='dateTo' value='" + dateTo + "' /><br />\n" +
+                "        <p>How often used:</p>\n" +
+                "        <input type='radio' name='howOften' value='Daily' checked> Daily<br />\n" +
+                "        <input type='radio' name='howOften' value='Weekly'> Weekly<br />\n" +
+                "        <input type='radio' name='howOften' value='Less often'> Less often<br />\n" +
+                 broken + heavy + colour + "<input type='submit' value=' OK '>");
+    %>
 
 </form>
 

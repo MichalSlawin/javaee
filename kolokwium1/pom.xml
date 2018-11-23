@@ -4,7 +4,7 @@
 	<groupId>com.javaee</groupId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>doorstorejsp</name>
+	<name>kolokwium1</name>
 	<url>http://maven.apache.org</url>
 	<repositories>
 		<!-- Several key Java EE APIs and RIs are missing from the Maven Central 
@@ -48,7 +48,7 @@
 
 	</dependencies>
 	<build>
-		<finalName>doorstore</finalName>
+		<finalName>kolokwium1</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -83,6 +83,6 @@
 		</plugins>
 	</build>
 
-	<artifactId>doorstorejsp</artifactId>
+	<artifactId>kolokwium1</artifactId>
 </project>
 

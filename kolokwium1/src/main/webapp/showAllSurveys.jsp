@@ -1,11 +1,6 @@
-<%@ page import="com.javaee.doorstore.domain.Survey" %><%--
-  Created by IntelliJ IDEA.
-  User: michal
-  Date: 16.11.2018
-  Time: 12:58
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.javaee.doorstore.domain.Survey" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>All surveys</title>
@@ -14,7 +9,11 @@
 <jsp:useBean id="storage" class="com.javaee.doorstore.service.StorageService" scope="application" />
 <%
     for (Survey survey : storage.getAllSurveys()) {
-        out.println("<p>" + survey + "</p>");
+        out.print("<p>" + survey + "</p>");
+        out.print("<form action='deleteSurvey.jsp' method='post'>" +
+                "<input name='id' hidden value='" + survey.getId() + "' />" +
+                "<input type='submit' value=' Delete ' />" +
+                "</form>");
     }
 %>
 <p><a href="index.jsp">Menu</a></p>

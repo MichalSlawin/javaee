@@ -8,8 +8,9 @@
 <jsp:useBean id="storage" class="com.javaee.doorstore.service.StorageService" scope="application" />
 
 <%
-    storage.deleteLastSurvey();
-    response.sendRedirect("getSurveyData.jsp");
+    long id = Long.parseLong(request.getParameter("id"));
+    storage.deleteSurveyById(id);
+    response.sendRedirect("showAllSurveys.jsp");
 %>
 
 </body>

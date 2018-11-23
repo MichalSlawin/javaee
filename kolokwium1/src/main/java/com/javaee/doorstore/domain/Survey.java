@@ -1,26 +1,38 @@
 package com.javaee.doorstore.domain;
 
 import java.util.Date;
-import java.util.List;
 
 public class Survey {
-    private String dateSince;
-    private String dateTo;
+    private static long idCounter = 0;
+
+    private long id;
+    private Date dateSince;
+    private Date dateTo;
     private String howOften;
     private boolean isDoorTooHeavy;
     private boolean isDoorWrongColour;
     private boolean isDoorBroken;
 
-    public Survey() {
-    }
+    public Survey() { }
 
-    public Survey(String dateSince, String dateTo, String howOften, boolean isDoorTooHeavy, boolean isDoorWrongColour, boolean isDoorBroken) {
+    public Survey(Date dateSince, Date dateTo, String howOften, boolean isDoorTooHeavy, boolean isDoorWrongColour, boolean isDoorBroken) {
+        this.id = idCounter;
+        idCounter++;
+
         this.dateSince = dateSince;
         this.dateTo = dateTo;
         this.howOften = howOften;
         this.isDoorTooHeavy = isDoorTooHeavy;
         this.isDoorWrongColour = isDoorWrongColour;
         this.isDoorBroken = isDoorBroken;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public boolean isDoorTooHeavy() {
@@ -47,19 +59,19 @@ public class Survey {
         isDoorBroken = doorBroken;
     }
 
-    public String getDateSince() {
+    public Date getDateSince() {
         return dateSince;
     }
 
-    public void setDateSince(String dateSince) {
+    public void setDateSince(Date dateSince) {
         this.dateSince = dateSince;
     }
 
-    public String getDateTo() {
+    public Date getDateTo() {
         return dateTo;
     }
 
-    public void setDateTo(String dateTo) {
+    public void setDateTo(Date dateTo) {
         this.dateTo = dateTo;
     }
 
@@ -74,12 +86,11 @@ public class Survey {
     @Override
     public String toString() {
         String surveyStr = "";
-        surveyStr += "Used since " + dateSince +
-                ", Used to=" + dateTo +
-                ", Used " + howOften;
-        if(isDoorBroken) surveyStr += ", door is broken";
-        if(isDoorTooHeavy) surveyStr += ", door is too heavy";
-        if(isDoorWrongColour) surveyStr += ", door is wrong colour";
+        surveyStr += "Used " + howOften + "since " + dateSince +
+                ", to " + dateTo;
+        if(isDoorBroken) surveyStr += "\n- door is broken";
+        if(isDoorTooHeavy) surveyStr += "\n- door is too heavy";
+        if(isDoorWrongColour) surveyStr += "\n- door is wrong colour";
 
         return surveyStr;
     }
