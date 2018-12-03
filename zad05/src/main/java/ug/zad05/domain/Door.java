@@ -1,5 +1,7 @@
 package ug.zad05.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
@@ -8,7 +10,7 @@ public class Door {
     private long id;
     private Date productionDate;
     private double weight;
-    private boolean isExterior;
+    private boolean exterior; // kiedy pole nazywa sie exterior postman wywala blad
     private String producer;
     private String description;
     private double price;
@@ -19,7 +21,7 @@ public class Door {
         this.id = id;
         this.productionDate = productionDate;
         this.weight = weight;
-        this.isExterior = isExterior;
+        this.exterior = isExterior;
         this.producer = producer;
         this.description = description;
         this.price = price;
@@ -33,6 +35,7 @@ public class Door {
         this.id = id;
     }
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     public Date getProductionDate() {
         return productionDate;
     }
@@ -50,11 +53,11 @@ public class Door {
     }
 
     public boolean isExterior() {
-        return isExterior;
+        return exterior;
     }
 
     public void setExterior(boolean exterior) {
-        isExterior = exterior;
+        this.exterior = exterior;
     }
 
     public String getProducer() {
@@ -86,7 +89,7 @@ public class Door {
         return "id=" + id +
                 ", productionDate=" + productionDate +
                 ", weight=" + weight +
-                ", isExterior=" + isExterior +
+                //", exterior=" + exterior +
                 ", producer='" + producer + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price;
