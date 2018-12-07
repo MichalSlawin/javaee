@@ -37,3 +37,4 @@ bin
 *.bak
 
 .metadata
+db

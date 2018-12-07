@@ -37,20 +37,35 @@ public class DoorManager {
         return db;
     }
 
+//    public Door updateDoor(Door newDoor) {
+//        for(int i = 0; i < db.size(); i++) {
+//            if(db.get(i).getId() == newDoor.getId())
+//                db.set(i, newDoor);
+//        }
+//        return newDoor;
+//    }
+
     public Door updateDoor(Door newDoor) {
-        for(int i = 0; i < db.size(); i++) {
-            if(db.get(i).getId() == newDoor.getId())
-                db.set(i, newDoor);
+        int updateIndex = -1;
+        for(Door door : db) {
+            if(door.getId() == newDoor.getId())
+                updateIndex = db.indexOf(door);
         }
+        if(updateIndex != -1)
+            db.set(updateIndex, newDoor);
         return newDoor;
     }
 
+    // UWAGA: nie mozemy zmieniac listy przechodzac przez nia
     public void deleteDoor(long id) {
+        Door toDelete = null;
         for(Door door : db) {
             if(door.getId() == id) {
-                db.remove(door);
+               toDelete = door;
             }
         }
+        if(toDelete != null)
+            db.remove(toDelete);
     }
 
     public void deleteAllDoors() {

@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "48b47420-2146-4f0c-95ca-d5bc27eb174a",
+		"name": "javaee",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "doorstore",
+			"item": [
+				{
+					"name": "addDoor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"1\",\n    \"productionDate\": \"2018-12-03\",\n    \"weight\": \"20\",\n    \"exterior\": \"false\",\n    \"producer\": \"Porta\",\n    \"description\": \"drzwi lewoskretne\",\n    \"price\": \"200\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/zad05/api/door/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad05",
+								"api",
+								"door",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDoors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/zad05/api/door/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad05",
+								"api",
+								"door",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_door",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"1\",\n    \"productionDate\": \"2018-12-03\",\n    \"weight\": \"40\",\n    \"exterior\": \"true\",\n    \"producer\": \"BRW\",\n    \"description\": \"drzwi prawoskretne\",\n    \"price\": \"600\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/zad05/api/door/id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad05",
+								"api",
+								"door",
+								"id=1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_door",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"3\",\n    \"productionDate\": \"2017-02-23\",\n    \"weight\": \"100\",\n    \"exterior\": \"true\",\n    \"producer\": \"Porta\",\n    \"description\": \"drzwi obrotowe\",\n    \"price\": \"3000\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/zad05/api/door/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad05",
+								"api",
+								"door",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
