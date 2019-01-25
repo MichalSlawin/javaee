@@ -10,7 +10,7 @@ public class Door {
     private long id;
     private Date productionDate;
     private double weight;
-    private boolean exterior; // kiedy pole nazywa sie exterior postman wywala blad
+    private boolean exterior;
     private String producer;
     private String description;
     private double price;
