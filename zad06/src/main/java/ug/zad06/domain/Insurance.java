@@ -1,14 +1,27 @@
 package ug.zad06.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "insurance.all", query = "SELECT i FROM Insurance i"),
+        @NamedQuery(name = "insurance.all", query = "SELECT i FROM Insurance i LEFT JOIN FETCH i.doors"),
         @NamedQuery(name = "insurance.byId", query = "SELECT i FROM Insurance i WHERE i.id = :id")
 })
+@XmlRootElement
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Insurance {
     private Long id;
     private String type;
@@ -18,10 +31,11 @@ public class Insurance {
 
     public Insurance() {}
 
-    public Insurance(String type, Date startDate, Date endDate) {
+    public Insurance(String type, Date startDate, Date endDate, List<Door> doors) {
         this.type = type;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.doors = doors;
     }
 
     @Id
@@ -60,7 +74,7 @@ public class Insurance {
         this.endDate = endDate;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "insurances", fetch = FetchType.EAGER)
     public List<Door> getDoors() {
         return doors;
     }

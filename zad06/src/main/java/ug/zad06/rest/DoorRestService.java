@@ -1,6 +1,7 @@
 package ug.zad06.rest;
 
 import ug.zad06.domain.Door;
+import ug.zad06.domain.Insurance;
 import ug.zad06.util.DoorResponse;
 
 import javax.ejb.Stateless;
@@ -12,6 +13,7 @@ import javax.ws.rs.core.Response;
 import java.text.DateFormat;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -50,6 +52,7 @@ public class DoorRestService {
     @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addDoor(Door door){
+
         em.persist(door);
         return Response.status(201).entity(door).build();
     }

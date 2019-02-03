@@ -1,7 +1,8 @@
 package ug.zad06.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,6 +22,9 @@ import java.util.List;
 // query = "Select a.firstName, a.lastName, b.title, b.yop, from Book b
 // join b.authors a where a.firstName = :firstName"
 })
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @XmlRootElement
 public class Door {
     private long id;
@@ -93,7 +97,8 @@ public class Door {
         this.producer = producer;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany()
     public List<Lock> getLocks() {
         return locks;
     }
@@ -102,7 +107,7 @@ public class Door {
         this.locks = locks;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "doors")
+    @ManyToMany(fetch = FetchType.EAGER)
     public List<Insurance> getInsurances() {
         return insurances;
     }

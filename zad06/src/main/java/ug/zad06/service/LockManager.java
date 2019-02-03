@@ -13,9 +13,9 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-
 @Stateless
 public class LockManager {
+
     @PersistenceContext
     EntityManager em;
 
