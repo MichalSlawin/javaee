@@ -1,14 +1,15 @@
 package ug.zad06.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 @Entity
 @NamedQueries({
         @NamedQuery(name = "lock.getAll", query = "SELECT l FROM Lock l"),
         @NamedQuery(name = "lock.findById", query = "SELECT l FROM Lock l WHERE l.id = :id")
 })
+@XmlRootElement
 public class Lock {
     private Long id;
     private Producer producer;

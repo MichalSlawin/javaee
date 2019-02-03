@@ -21,7 +21,7 @@ public class LockRestService {
     public Response addLock(Lock lock) {
         lockManager.addLock(lock);
 
-        return Response.status(Response.Status.CREATED).build();
+        return Response.status(201).entity(lock).build();
     }
 
     @GET()
@@ -30,4 +30,19 @@ public class LockRestService {
     public List<Lock> getAll() {
         return lockManager.getAll();
     }
+
+    @GET()
+    @Path("/id/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Lock getLock(@PathParam("id") long id) {
+        return (Lock) lockManager.findLock(id);
+    }
+
+    @GET
+    @Path("/electronic/{electronic}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Lock> getLocks(@PathParam("electronic") boolean electronic) {
+        return lockManager.getLocks(electronic);
+    }
+
 }

@@ -1,7 +1,11 @@
 package ug.zad06.domain;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @NamedQueries({
         @NamedQuery(name = "producer.getAll", query = "SELECT p FROM Producer p"),
@@ -9,6 +13,7 @@ import javax.persistence.*;
         @NamedQuery(name = "producer.findByName", query = "SELECT p FROM Producer p WHERE p.name = :name"),
         @NamedQuery(name = "producer.deleteById", query = "DELETE FROM Producer p WHERE p.id = :id")
 })
+@XmlRootElement
 public class Producer {
     private Long id;
     private String name;

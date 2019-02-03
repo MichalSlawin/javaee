@@ -43,7 +43,7 @@ public class ProducerRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addProducer(Producer producer){
         em.persist(producer);
-        return Response.status(201).entity("producer").build();
+        return Response.status(201).entity(producer).build();
     }
 
     @PUT

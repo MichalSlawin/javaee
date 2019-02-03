@@ -1,6 +1,7 @@
 package ug.zad06.rest;
 
 import ug.zad06.domain.Door;
+import ug.zad06.util.DoorResponse;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -23,7 +24,7 @@ public class DoorRestService {
     EntityManager em;
 
     @GET
-    @Path("/id={doorId}")
+    @Path("/id/{doorId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Door getDoor(@PathParam("doorId") long id) {
         return (Door) em.createNamedQuery("door.findById").setParameter("id", id).getSingleResult();
@@ -38,7 +39,7 @@ public class DoorRestService {
     }
 
     @GET
-    @Path("/exterior={exterior}")
+    @Path("/exterior/{exterior}")
     @Produces(MediaType.APPLICATION_JSON)
     @SuppressWarnings("unchecked")
     public List<Door> getDoor(@PathParam("exterior") boolean exterior) {
@@ -50,7 +51,7 @@ public class DoorRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addDoor(Door door){
         em.persist(door);
-        return Response.status(201).entity("Door").build();
+        return Response.status(201).entity(door).build();
     }
 
     @PUT
@@ -67,14 +68,14 @@ public class DoorRestService {
     }
 
     @DELETE
-    @Path("/id={doorId}")
+    @Path("/id/{doorId}")
     public Response deleteDoor(@PathParam("doorId") long id) {
         em.createNamedQuery("door.deleteById").setParameter("id", id).executeUpdate();
         return Response.status(200).build();
     }
 
     @DELETE
-    @Path("/date={date}")
+    @Path("/date/{date}")
     public Response deleteDoors(@PathParam("date") String dateStr) {
         ParsePosition PARSE_POSITION = new ParsePosition(0);
         DateFormat parser = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);

@@ -85,7 +85,6 @@ public class Door {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
     public Producer getProducer() {
         return producer;
     }

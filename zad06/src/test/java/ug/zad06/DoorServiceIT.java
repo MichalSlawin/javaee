@@ -40,7 +40,11 @@ public class DoorServiceIT {
 	       contentType(MediaType.APPLICATION_JSON).
 	       body(door).
 	    when().
-	    post("/door/").then().assertThat().statusCode(201);
+	    post("/door/").then().log().all().assertThat().statusCode(201);
+
+		given().log().all().
+				accept(MediaType.APPLICATION_JSON).
+		when().get("/door/id/{doorId}",1).then().assertThat().statusCode(200);
 
 		delete("/door/").then().assertThat().statusCode(200);
 	}	
