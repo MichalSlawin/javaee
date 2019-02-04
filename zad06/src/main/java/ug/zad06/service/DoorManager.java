@@ -49,6 +49,11 @@ public class DoorManager {
         em.createNamedQuery("door.deleteOlder").setParameter("productionDate", date).executeUpdate();
     }
 
+    @SuppressWarnings("unchecked")
+    public List<Object[]> getProducerNames(String name) {
+        return em.createNamedQuery("door.findByProducerName").setParameter("name", name).getResultList();
+    }
+
 //    public List<Object[]> getAuthorsBooks(String firstName) {
 //        return em.createNamedQuery(bookAuthor.findByAuthorFirstName).setParameter("firstName", firstName)
 //          .getResultList();
