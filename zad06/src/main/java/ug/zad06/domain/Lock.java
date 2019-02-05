@@ -6,8 +6,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "lock.getAll", query = "SELECT l FROM Lock l"),
-        @NamedQuery(name = "lock.findById", query = "SELECT l FROM Lock l WHERE l.id = :id")
+        @NamedQuery(name = "lock.deleteAll", query = "DELETE FROM Lock"),
+        @NamedQuery(name = "lock.deleteById", query = "DELETE FROM Lock l WHERE l.id = :id")
 })
 @XmlRootElement
 public class Lock {

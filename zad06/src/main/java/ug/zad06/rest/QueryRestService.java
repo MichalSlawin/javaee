@@ -1,7 +1,5 @@
 package ug.zad06.rest;
 
-
-
 import ug.zad06.service.DoorManager;
 
 import javax.inject.Inject;

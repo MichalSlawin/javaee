@@ -1,8 +1,6 @@
 package ug.zad06.rest;
 
 import ug.zad06.domain.Door;
-import ug.zad06.domain.Insurance;
-import ug.zad06.util.DoorResponse;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -13,7 +11,6 @@ import javax.ws.rs.core.Response;
 import java.text.DateFormat;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -46,6 +43,14 @@ public class DoorRestService {
     @SuppressWarnings("unchecked")
     public List<Door> getDoor(@PathParam("exterior") boolean exterior) {
         return em.createNamedQuery("door.findByExterior").setParameter("exterior", exterior).getResultList();
+    }
+
+    @GET
+    @Path("/insurance")
+    @Produces(MediaType.APPLICATION_JSON)
+    @SuppressWarnings("unchecked")
+    public List<Door> getDoor() {
+        return em.createNamedQuery("door.getDoorsExpiredInsurance").getResultList();
     }
 
     @POST

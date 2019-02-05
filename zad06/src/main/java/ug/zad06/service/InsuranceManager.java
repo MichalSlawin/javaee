@@ -25,4 +25,16 @@ public class InsuranceManager {
     public List<Insurance> getAll(){
         return em.createNamedQuery("insurance.all").getResultList();
     }
+
+    public Insurance updateInsurance(Insurance insurance){
+        return em.merge(insurance);
+    }
+
+    public void clearInsurances() {
+        em.createNamedQuery("insurance.deleteAll").executeUpdate();
+    }
+
+    public void deleteById(long id) {
+        em.createNamedQuery("insurance.deleteById").setParameter("id", id).executeUpdate();
+    }
 }

@@ -16,7 +16,9 @@ import java.util.List;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "insurance.all", query = "SELECT i FROM Insurance i LEFT JOIN FETCH i.doors"),
-        @NamedQuery(name = "insurance.byId", query = "SELECT i FROM Insurance i WHERE i.id = :id")
+        @NamedQuery(name = "insurance.byId", query = "SELECT i FROM Insurance i WHERE i.id = :id"),
+        @NamedQuery(name = "insurance.deleteAll", query = "DELETE FROM Insurance"),
+        @NamedQuery(name = "insurance.deleteById", query = "DELETE FROM Insurance i WHERE i.id = :id")
 })
 @XmlRootElement
 @JsonIdentityInfo(

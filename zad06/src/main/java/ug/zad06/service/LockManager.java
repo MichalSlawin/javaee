@@ -1,7 +1,6 @@
 package ug.zad06.service;
 
 import ug.zad06.domain.Lock;
-import ug.zad06.domain.Producer;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -33,8 +32,6 @@ public class LockManager {
     }
 
     public List<Lock> getAll() {
-//        return em.createNamedQuery("lock.getAll").getResultList();
-
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Lock> criteriaQuery = criteriaBuilder.createQuery(Lock.class);
         Root<Lock> root = criteriaQuery.from(Lock.class);
@@ -71,9 +68,17 @@ public class LockManager {
         return resultList;
     }
 
-    public Producer getLockProducer(Long id) {
-        Lock retrieved = findLock(id);
+    public Lock updateLock(Lock lock){
+        findLock(lock.getId()).getProducer().getName();
+        
+        return em.merge(lock);
+    }
 
-        return retrieved.getProducer();
+    public void clearLocks() {
+        em.createNamedQuery("lock.deleteAll").executeUpdate();
+    }
+
+    public void deleteById(long id) {
+        em.createNamedQuery("lock.deleteById").setParameter("id", id).executeUpdate();
     }
 }

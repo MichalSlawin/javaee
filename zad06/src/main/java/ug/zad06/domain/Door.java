@@ -17,12 +17,9 @@ import java.util.List;
         @NamedQuery(name = "door.findByExterior", query = "SELECT d FROM Door d LEFT JOIN FETCH d.insurances WHERE d.exterior = :exterior"),
         @NamedQuery(name = "door.deleteById", query = "DELETE FROM Door d WHERE d.id = :id"),
         @NamedQuery(name = "door.deleteOlder", query = "DELETE FROM Door d WHERE d.productionDate < :date"),
+        @NamedQuery(name = "door.getDoorsExpiredInsurance", query = "SELECT d FROM Door d INNER JOIN d.insurances i WHERE i.endDate < CURRENT_DATE "),
         @NamedQuery(name = "door.findByProducerName", query = "SELECT p.name," +
                 "d.description, d.price FROM Door d INNER JOIN d.producer p WHERE p.name = :name")
-//        name = "person.getCarsOfPerson" query = "Select c From Person p Join p.cars c where p.id = :pId"
-//        name = "bookAuthor.findByAuthorFirstName"
-// query = "Select a.firstName, a.lastName, b.title, b.yop, from Book b
-// join b.authors a where a.firstName = :firstName"
 })
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,

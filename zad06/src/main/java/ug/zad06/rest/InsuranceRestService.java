@@ -37,4 +37,24 @@ public class InsuranceRestService {
     public Insurance getInsurance(@PathParam("id") long id) {
         return (Insurance) insuranceManager.getInsurance(id);
     }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Insurance updateDoor(Insurance insurance) {
+        return insuranceManager.updateInsurance(insurance);
+    }
+
+    @DELETE
+    public Response clearInsurances(){
+        insuranceManager.clearInsurances();
+        return Response.status(200).build();
+    }
+
+    @DELETE
+    @Path("/id/{insuranceId}")
+    public Response deleteInsurance(@PathParam("insuranceId") long id) {
+        insuranceManager.deleteById(id);
+        return Response.status(200).build();
+    }
 }

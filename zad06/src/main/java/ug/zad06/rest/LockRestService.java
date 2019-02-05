@@ -45,4 +45,24 @@ public class LockRestService {
         return lockManager.getLocks(electronic);
     }
 
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Lock updateLock(Lock lock) {
+        return lockManager.updateLock(lock);
+    }
+
+    @DELETE
+    public Response clearLocks(){
+        lockManager.clearLocks();
+        return Response.status(200).build();
+    }
+
+    @DELETE
+    @Path("/id/{lockId}")
+    public Response deleteLock(@PathParam("lockId") long id) {
+        lockManager.deleteById(id);
+        return Response.status(200).build();
+    }
+    
 }
