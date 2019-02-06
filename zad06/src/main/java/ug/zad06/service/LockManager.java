@@ -70,7 +70,7 @@ public class LockManager {
 
     public Lock updateLock(Lock lock){
         findLock(lock.getId()).getProducer().getName();
-        
+
         return em.merge(lock);
     }
 

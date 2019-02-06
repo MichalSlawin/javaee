@@ -1,0 +1,561 @@
+{
+	"info": {
+		"_postman_id": "48b47420-2146-4f0c-95ca-d5bc27eb174a",
+		"name": "javaee",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "door",
+			"item": [
+				{
+					"name": "addDoor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productionDate\": \"2018-12-03\",\n    \"weight\": \"20\",\n    \"exterior\": \"true\",\n    \"producer\":\n    \t{\n    \t\"id\" : 1\n    \t},\n    \"description\": \"drzwi lewoskretne\",\n    \"price\": \"200\",\n    \"locks\" :\n    [\n    \t{\n    \t\t\"id\" : 1\n    \t}\n    ],\n    \"insurances\" :\n    [\n    \t{\n    \t\t\"id\" : 1\n    \t}\n    ]\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/door/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"door",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDoors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/door/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"door",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteDoor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/door/date=2018-12-02",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"door",
+								"date=2018-12-02"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateDoor",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : \"1\",\n    \"productionDate\": \"2018-12-03\",\n    \"weight\": \"20\",\n    \"exterior\": \"true\",\n    \"producer\":\n    \t{\n    \t\"id\" : 1\n    \t},\n    \"description\": \"drzwi lewoskretne\",\n    \"price\": \"200\",\n    \"locks\" :\n    [\n    \t{\n    \t\t\"id\" : 1\n    \t}\n    ]\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/door/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"door",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getExteriorDoors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/door/exterior=false",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"door",
+								"exterior=false"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDoorsByProducerName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/query/name/Porta",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"query",
+								"name",
+								"Porta"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "producer",
+			"item": [
+				{
+					"name": "addProducer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Porta\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/producer/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"producer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProducers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/producer/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"producer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProducer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/producer/id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"producer",
+								"id=1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProducer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : \"1\",\n\t\"name\" : \"BRW\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/producer/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"producer",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "lock",
+			"item": [
+				{
+					"name": "addLock",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"producer\":\n    \t{\n    \t\"id\" : 1\n    \t},\n    \"electronic\" : \"true\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/lock/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"lock",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllLocks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/lock/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"lock",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateLock",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : \"1\",\n    \"producer\":\n    \t{\n    \t\"id\" : 1\n    \t},\n    \"electronic\" : \"false\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/lock/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"lock",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteLock",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/lock/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"lock",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLocksByElectronic",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/lock/electronic/true",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"lock",
+								"electronic",
+								"true"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "insurance",
+			"item": [
+				{
+					"name": "addInsurance",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"type\" : \"od niedzwiedzi\",\n    \"startDate\": \"2016-12-03\",\n    \"endDate\": \"2019-12-03\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/insurance/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"insurance",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getInsurance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/insurance",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"insurance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteInsurance",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/insurance/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"insurance",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateInsurance",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : \"1\",\n\t\"type\" : \"od mrozu\",\n    \"startDate\": \"2016-12-03\",\n    \"endDate\": \"2019-12-03\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/zad06/api/insurance/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"zad06",
+								"api",
+								"insurance",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
