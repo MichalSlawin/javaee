@@ -1,6 +1,7 @@
 package ug.zad06.rest;
 
 import ug.zad06.domain.Door;
+import ug.zad06.domain.Lock;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -26,7 +27,15 @@ public class DoorRestService {
     @Path("/id/{doorId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Door getDoor(@PathParam("doorId") long id) {
-        return (Door) em.createNamedQuery("door.findById").setParameter("id", id).getSingleResult();
+        Door door = (Door) em.createNamedQuery("door.findById").setParameter("id", id).getSingleResult();
+        List<Lock> locks = door.getLocks();
+        for(Lock lock : locks) {
+            if(lock.getProducer() != null) {
+                lock.getProducer().getName();
+            }
+        }
+
+        return door;
     }
 
     @GET
@@ -34,7 +43,9 @@ public class DoorRestService {
     @Produces(MediaType.APPLICATION_JSON)
     @SuppressWarnings("unchecked")
     public List<Door> getAllDoors() {
-        return em.createNamedQuery("door.getAll").getResultList();
+        List<Door> doors = em.createNamedQuery("door.getAll").getResultList();
+        getLocksProducers(doors);
+        return doors;
     }
 
     @GET
@@ -42,7 +53,11 @@ public class DoorRestService {
     @Produces(MediaType.APPLICATION_JSON)
     @SuppressWarnings("unchecked")
     public List<Door> getDoor(@PathParam("exterior") boolean exterior) {
-        return em.createNamedQuery("door.findByExterior").setParameter("exterior", exterior).getResultList();
+        List<Door> doors = em.createNamedQuery("door.findByExterior")
+                .setParameter("exterior", exterior).getResultList();
+        getLocksProducers(doors);
+
+        return doors;
     }
 
     @GET
@@ -50,7 +65,10 @@ public class DoorRestService {
     @Produces(MediaType.APPLICATION_JSON)
     @SuppressWarnings("unchecked")
     public List<Door> getDoor() {
-        return em.createNamedQuery("door.getDoorsExpiredInsurance").getResultList();
+        List<Door> doors = em.createNamedQuery("door.getDoorsExpiredInsurance").getResultList();
+        getLocksProducers(doors);
+
+        return doors;
     }
 
     @POST
@@ -92,6 +110,17 @@ public class DoorRestService {
         em.createNamedQuery("door.deleteOlder").setParameter("date", date).executeUpdate();
 
         return Response.status(200).build();
+    }
+
+    public static void getLocksProducers(List<Door> doors) {
+        for(Door door : doors) {
+            List<Lock> locks = door.getLocks();
+            for(Lock lock : locks) {
+                if(lock.getProducer() != null) {
+                    lock.getProducer().getName();
+                }
+            }
+        }
     }
 
 }

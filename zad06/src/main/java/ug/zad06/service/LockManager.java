@@ -24,7 +24,7 @@ public class LockManager {
 
     public Lock findLock(Long id) {
         Lock lock = em.find(Lock.class, id);
-        if(lock != null) {
+        if(lock != null && lock.getProducer() != null) {
             lock.getProducer().getName();
         }
 
@@ -68,10 +68,12 @@ public class LockManager {
         return resultList;
     }
 
-    public Lock updateLock(Lock lock){
-        findLock(lock.getId()).getProducer().getName();
+    public void updateLock(Lock lock){
+        if(lock.getProducer() != null) {
+            findLock(lock.getId()).getProducer().getName();
+        }
 
-        return em.merge(lock);
+        em.merge(lock);
     }
 
     public void clearLocks() {

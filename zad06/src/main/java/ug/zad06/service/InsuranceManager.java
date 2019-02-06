@@ -1,6 +1,8 @@
 package ug.zad06.service;
 
+import ug.zad06.domain.Door;
 import ug.zad06.domain.Insurance;
+import ug.zad06.rest.DoorRestService;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -18,16 +20,28 @@ public class InsuranceManager {
     }
 
     public Insurance getInsurance(Long id){
-        return em.find(Insurance.class, id);
+        Insurance insurance = em.find(Insurance.class, id);
+
+        List<Door> doors = insurance.getDoors();
+        DoorRestService.getLocksProducers(doors);
+
+        return insurance;
     }
 
     @SuppressWarnings("unchecked")
     public List<Insurance> getAll(){
-        return em.createNamedQuery("insurance.all").getResultList();
+        List<Insurance> insurances = em.createNamedQuery("insurance.all").getResultList();
+
+        for(Insurance insurance : insurances) {
+            List<Door> doors = insurance.getDoors();
+            DoorRestService.getLocksProducers(doors);
+        }
+
+        return insurances;
     }
 
-    public Insurance updateInsurance(Insurance insurance){
-        return em.merge(insurance);
+    public void updateInsurance(Insurance insurance){
+        em.merge(insurance);
     }
 
     public void clearInsurances() {

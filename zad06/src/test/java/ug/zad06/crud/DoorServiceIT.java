@@ -1,4 +1,4 @@
-package ug.zad06;
+package ug.zad06.crud;
 
 import static com.jayway.restassured.RestAssured.*;
 import javax.ws.rs.core.MediaType;
@@ -30,23 +30,25 @@ public class DoorServiceIT {
 
 	
 	@Test
-	public void addDoor() {
+	public void DoorCRUDTest() {
 		Door door = new Door();
 		door.setProductionDate(DATE1);
 		door.setWeight(80.0);
 		door.setDescription("dobre drzwi");
 
-		given().
-	       contentType(MediaType.APPLICATION_JSON).
-	       body(door).
-	    when().
+		given().contentType(MediaType.APPLICATION_JSON).body(door).when().
 	    post("/door/").then().log().all().assertThat().statusCode(201);
 
 		given().log().all().
 				accept(MediaType.APPLICATION_JSON).
 		when().get("/door/id/{doorId}",1).then().assertThat().statusCode(200);
 
+		door.setExterior(true);
+
+		given().contentType(MediaType.APPLICATION_JSON).body(door).when().
+				put("/door/").then().assertThat().statusCode(204);
+
 		delete("/door/").then().assertThat().statusCode(200);
-	}	
+	}
 
 }

@@ -17,14 +17,14 @@ public class ProducerRestService {
     EntityManager em;
 
     @GET
-    @Path("/id={producerId}")
+    @Path("/id/{producerId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Producer getProducer(@PathParam("producerId") long id) {
         return em.find(Producer.class, id);
     }
 
     @GET
-    @Path("/name={producerName}")
+    @Path("/name/{producerName}")
     @Produces(MediaType.APPLICATION_JSON)
     public Producer getProducer(@PathParam("producerName") String name) {
         return (Producer) em.createNamedQuery("producer.findByName").setParameter("name", name).getSingleResult();
@@ -60,7 +60,7 @@ public class ProducerRestService {
     }
 
     @DELETE
-    @Path("/id={producerId}")
+    @Path("/id/{producerId}")
     public Response deleteProducer(@PathParam("producerId") long id) {
         em.createNamedQuery("producer.deleteById").setParameter("id", id).executeUpdate();
         return Response.status(200).build();

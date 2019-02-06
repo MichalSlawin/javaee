@@ -41,8 +41,8 @@ public class InsuranceRestService {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Insurance updateDoor(Insurance insurance) {
-        return insuranceManager.updateInsurance(insurance);
+    public void updateDoor(Insurance insurance) {
+        insuranceManager.updateInsurance(insurance);
     }
 
     @DELETE

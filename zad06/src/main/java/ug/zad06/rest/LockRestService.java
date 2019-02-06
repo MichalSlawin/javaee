@@ -48,8 +48,8 @@ public class LockRestService {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Lock updateLock(Lock lock) {
-        return lockManager.updateLock(lock);
+    public void updateLock(Lock lock) {
+        lockManager.updateLock(lock);
     }
 
     @DELETE
