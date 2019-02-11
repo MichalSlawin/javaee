@@ -1,6 +1,7 @@
 package ug.zad06.service;
 
 import ug.zad06.domain.Lock;
+import ug.zad06.domain.Lock_;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -53,7 +54,7 @@ public class LockManager {
         CriteriaQuery<Lock> criteriaQuery = criteriaBuilder.createQuery(Lock.class);
         Root<Lock> root = criteriaQuery.from(Lock.class);
 
-        Predicate condition = criteriaBuilder.equal(root.get("electronic"), electronic);
+        Predicate condition = criteriaBuilder.equal(root.get(Lock_.electronic), electronic);
         criteriaQuery.where(condition);
 
         CriteriaQuery<Lock> select = criteriaQuery.select(root);
